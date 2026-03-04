@@ -125,12 +125,15 @@ public class Testing {
 
     String employeeDatabase = "src/MotorPH Employee Database.csv";
     String attendanceRecords = "src/MotorPH_Employee Data - Attendance Record.csv";
-
+    
+    Scanner input = new Scanner(System.in);
     String validUsername1 = "employee";
     String validUsername2 = "payroll_staff";
-    Scanner input = new Scanner(System.in);
+     
+ 
     boolean isAuthenticated = false;
     String correctPassword = "12345";
+    String role ="";
 
     // LOGIN SYSTEM
     for (int attempt = 1; attempt <= 5; attempt++) {
@@ -143,6 +146,8 @@ public class Testing {
         if ((username.equals(validUsername1) || username.equals(validUsername2))
                 && password.equals(correctPassword)) {
             isAuthenticated = true;
+            role=username;
+
             System.out.println("Login Successful!\n");
             break;
         } else {
@@ -156,8 +161,100 @@ public class Testing {
         return;
     }
 
+    boolean running=true;
+    
+    while(running){
+    
+    System.out.println("\n=== MAIN MENU ===");
+    
+    if(role.equals("employee")){
+    
+    System.out.println("1 Enter your employee number");
+    System.out.println("2 Exit");
+    
+    }
+    else{
+    
+    System.out.println("1 Process Payroll");
+    System.out.println("2 Exit");
+
+    }
+    
+    System.out.print("Choose option: ");
+    String choice=input.nextLine();
+    if(choice.equals("2")) break;
+
+    if(!choice.equals("1")) continue;
+
+    if(role.equals("employee")){
+
+    System.out.print("Enter Employee Number: ");
+    String emp=input.nextLine();
+
+    processPayroll(emp,employeeDatabase,attendanceRecords);
+
+    }
+    
+    
+    if(role.equals("payroll_staff")){
+
+    System.out.println("\n=== PROCESS PAYROLL ===");
+    System.out.println("1 One employee");
+    System.out.println("2 All employees");
+    System.out.println("3 Exit");
+    System.out.print("Choose option: ");
+    String sub=input.nextLine();
+
+    if(sub.equals("3")) break;
+
+    if(sub.equals("1")){
+    
+    System.out.print("Enter Employee Number: ");
+    String emp=input.nextLine();
+
+    processPayroll(emp,employeeDatabase,attendanceRecords);
+
+    }
+
+    if(sub.equals("2")){
+
+    try(BufferedReader br=new BufferedReader(new FileReader(employeeDatabase))){
+
+    br.readLine();
+
+    String line;
+
+    while((line=br.readLine())!=null){
+
+    String[] data=line.split(",");
+
+    String emp=data[0].trim();
+
+    processPayroll(emp,employeeDatabase,attendanceRecords);
+
+    }
+
+    }
+
+    catch(Exception e){
+
+    System.out.println("Error reading employee file.");
+
+    }
+
+    }
+
+    }
+
+    }
+
+    input.close();
+
+    }
+    
     // EMPLOYEE INFO
-    String employeeNumber = "";
+    public static void processPayroll(String employeeNumber,String employeeDatabase,String attendanceRecords){
+    
     String employeeFirstName = "";
     String employeeLastName = "";
     String employeeBirthday = "";
