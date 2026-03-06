@@ -1,13 +1,18 @@
-# NetBeans project files
+# NetBeans
 nbproject/
+nbactions.xml
 
 # build files
 build/
 dist/
 
-# compiled java files
+# compiled
 *.class
 
-# temporary files
+# temporary
 *.log
 *.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
