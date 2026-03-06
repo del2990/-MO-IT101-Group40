@@ -1,5 +1,15 @@
 package motorphcomprog1;
 
+/*
+MotorPH Payroll System
+MO-IT101
+
+Group Members:
+Ronachel Digma – GitHub: ronachel
+Markus Joaquin Crisostomo – GitHub: markus103006
+Adelfa Catugo – GitHub: del2990
+*/
+
 import java.util.Scanner;
 import java.io.*;
 import java.time.Duration;
