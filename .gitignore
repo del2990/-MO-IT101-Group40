@@ -1,0 +1,13 @@
+# NetBeans project files
+nbproject/
+
+# build files
+build/
+dist/
+
+# compiled java files
+*.class
+
+# temporary files
+*.log
+*.tmp
