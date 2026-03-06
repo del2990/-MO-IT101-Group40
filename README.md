@@ -119,24 +119,40 @@ Total deductions are subtracted from gross salary to determine the **net salary*
 Example payroll information displayed by the system:
 
 Employee Number: 10002
+
 Employee Name: Antonio Lim
+
 Birthday: 06/19/1988
+
 
 Month: June
 
+
 First Cutoff: June 1 to 15
+
 Total Hours Worked: 73.38
+
 Gross Salary: 26208.12
+
 Net Salary: 26208.12
 
+
 Second Cutoff: June 16 to 30
+
 Total Hours Worked: 73.90
+
 Gross Salary: 26392.64
+
 SSS Deduction: 1125.00
+
 PhilHealth Deduction: 789.01
+
 Pag-IBIG Deduction: 1052.01
+
 Withholding Tax Deduction: 7316.94
+
 Total Deductions: 10282.96
+
 Net Salary: 16109.67
 
 
@@ -177,8 +193,7 @@ This allowed the team to:
 
 ## Project Plan Link
 
-Project Plan:  
-**[Project Plan](https://docs.google.com/spreadsheets/d/1cBklH5QW7xFamQZRZQX-qEJxnJeZDuZU8miHq1C-LS8/edit?gid=2134013708#gid=2134013708)]**
+**[Project Plan](https://docs.google.com/spreadsheets/d/1cBklH5QW7xFamQZRZQX-qEJxnJeZDuZU8miHq1C-LS8/edit?gid=2134013708#gid=2134013708)**
 
 ---
 
