@@ -232,7 +232,7 @@ public class CP1Milestone2 {
      */
 
     public static void main(String[] args) {
-        String employeeDatabase = "src/MotorPH_Employee Data - Employee Details.csv";
+        String employeeDatabase = "src/MotorPH Employee Database.csv";
         String attendanceRecords = "src/MotorPH_Employee Data - Attendance Record.csv";
     
         String validUsername1 = "employee";
@@ -382,7 +382,7 @@ public class CP1Milestone2 {
                 employeeLastName = data[1].trim();
                 employeeFirstName = data[2].trim();
                 employeeBirthday = data[3].trim();
-                employeeHourlyRate = Double.parseDouble(data[18].replace("\"","").trim());
+                employeeHourlyRate = Double.parseDouble(data[4].trim());
                 found = true;
                 break;
             }
@@ -501,7 +501,7 @@ public class CP1Milestone2 {
         String employeeLastName = data[1].trim();
         String employeeFirstName = data[2].trim();
         String employeeBirthday = data[3].trim();
-        double employeeHourlyRate = Double.parseDouble(data[18].replace("\"","").trim());
+        double employeeHourlyRate = Double.parseDouble(data[4].trim());
 
             System.out.println("Employee Number: " + employeeNumber);
             System.out.println("Employee Name: " + employeeFirstName + " " + employeeLastName);
