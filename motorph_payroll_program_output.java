@@ -609,7 +609,3 @@ public class CP1Milestone2 {
     input.close();
         }
     }
-
-    input.close();
-        }
-    }
