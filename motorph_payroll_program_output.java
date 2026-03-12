@@ -287,13 +287,8 @@ public class CP1Milestone2 {
             System.out.print("Select option: ");
             String chosenOption = input.nextLine();
         
-        if (chosenOption.equals("2")) {
-        running = false;
-        break;
-            }
-        if (!chosenOption.equals("1")) {
-        continue;
-            }
+    if (chosenOption.equals("1")){
+            
         if (selectedUsername.equals("employee")) {
 
             System.out.print("Enter your Employee Number: ");
@@ -603,9 +598,18 @@ public class CP1Milestone2 {
                 System.out.println("Invalid option selected.");
                 System.out.println("Please restart the program and choose either 1 or 2.");
                     }   
-            }
-        }
+                }
+        } else if (chosenOption.equals("2")) {
 
+            running = false;
+            break;
+            }
+        else {
+        System.out.println("Invalid option selected.");
+        System.out.println("Please restart the program and choose either 1 or 2.");
+        }   
+     }
+     
     input.close();
         }
     }
