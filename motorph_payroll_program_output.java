@@ -1,4 +1,4 @@
-package motorphcomprog1;
+package cp1milestone2;
 
 /*
 MotorPH Payroll System
@@ -501,7 +501,7 @@ public class CP1Milestone2 {
         String employeeLastName = data[1].trim();
         String employeeFirstName = data[2].trim();
         String employeeBirthday = data[3].trim();
-        employeeHourlyRate = Double.parseDouble(data[data.length - 1].trim());
+        double employeeHourlyRate = Double.parseDouble(data[data.length - 1].trim());
 
             System.out.println("Employee Number: " + employeeNumber);
             System.out.println("Employee Name: " + employeeFirstName + " " + employeeLastName);
@@ -605,6 +605,10 @@ public class CP1Milestone2 {
                     }   
             }
         }
+
+    input.close();
+        }
+    }
 
     input.close();
         }
