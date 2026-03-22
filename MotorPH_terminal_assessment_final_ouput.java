@@ -80,14 +80,14 @@ public class FinalCodeOutput {
             while ((line = br.readLine()) != null) {
                 // Skip empty lines to prevent processing invalid data
                 if (line.trim().isEmpty()) continue;
-                String[] data = line.split(",");
-                if (data[0].trim().equals(inputEmployeeNumber)){
+                String[] employeeData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (employeeData[0].trim().equals(inputEmployeeNumber)){
                     return new String[] {
-                    data[0].trim(),// Array containing the employee number of the matched record.
-                    data[1].trim(),// Array containing the employee's last name
-                    data[2].trim(),// Array containing the employee's first name
-                    data[3].trim(),// Array containing the employee's birthday
-                    data[data.length - 1].trim()//Array containing the employee’s hourly rate (last column).
+                    employeeData[0].trim(),// Array containing the employee number of the matched record.
+                    employeeData[1].trim(),// Array containing the employee's last name
+                    employeeData[2].trim(),// Array containing the employee's first name
+                    employeeData[3].trim(),// Array containing the employee's birthday
+                    employeeData[employeeData.length - 1].trim()//Array containing the employee’s hourly rate (last column).
                     };
                 } 
                 
@@ -107,6 +107,8 @@ public class FinalCodeOutput {
     public static Map<String, List<String[]>> loadAttendanceRecords(String attendanceRecords) {
         Map<String, List<String[]>> attendanceMap = new HashMap<>();
 
+        // Note: Attendance file is read multiple times for simplicity.
+        // This can be optimized by loading data into memory using a Map.
         try (BufferedReader br = new BufferedReader(new FileReader(attendanceRecords))) {
             br.readLine(); // Skip the header row to avoid processing column titles
             String line;
@@ -115,14 +117,14 @@ public class FinalCodeOutput {
             while ((line = br.readLine()) != null) {
             // Skip empty lines to prevent invalid data processing
             if (line.trim().isEmpty()) continue;
-            String[] data = line.split(",");
-            String employeeNumber = data[0].trim();
+            String[] attendanceData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            String employeeNumber = attendanceData[0].trim();
             // If employee is not yet in the map, initialize a new list
             if (!attendanceMap.containsKey(employeeNumber)) {
                 attendanceMap.put(employeeNumber, new ArrayList<>());
             }
             // Adds the attendance record to the corresponding employee
-            attendanceMap.get(employeeNumber).add(data);
+            attendanceMap.get(employeeNumber).add(attendanceData);
             }
 
         } catch (Exception e) {
@@ -323,7 +325,7 @@ public class FinalCodeOutput {
     public static void computePayroll(String employeeNumber, String employeeFirstName, String employeeLastName,
     String employeeBirthday, double employeeHourlyRate,Map<String, List<String[]>> attendanceMap){
         
-        System.out.println("");
+        System.out.println("\n==============================");
         System.out.println("Employee Number: " + employeeNumber);
         System.out.println("Employee Name: " + employeeFirstName + " " + employeeLastName);
         System.out.println("Birthday: " + employeeBirthday);
@@ -349,7 +351,8 @@ public class FinalCodeOutput {
                 LocalTime logout = LocalTime.parse(data[5].trim(), timeFormat);
                 
                 double hours = computeTotalHoursWorked(login, logout);
-
+            
+            // Separate working hours into first cutoff (1–15) and second cutoff (16–end of month)
             if (day <= 15) 
             firstHalf += hours;
             else 
@@ -484,12 +487,12 @@ public class FinalCodeOutput {
                 String line;
                 while ((line = br.readLine()) != null) {
                     if (line.trim().isEmpty()) continue;
-                    String[] data = line.split(",");
-                    String employeeNumber = data[0].trim();
-                    String employeeLastName = data[1].trim();
-                    String employeeFirstName = data[2].trim();
-                    String employeeBirthday = data[3].trim();
-                    double employeeHourlyRate = Double.parseDouble(data[data.length - 1].trim());
+                    String[] employeeData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                    String employeeNumber = employeeData[0].trim();
+                    String employeeLastName = employeeData[1].trim();
+                    String employeeFirstName = employeeData[2].trim();
+                    String employeeBirthday = employeeData[3].trim();
+                    double employeeHourlyRate = Double.parseDouble(employeeData[employeeData.length - 1].trim());
                     //Compute payroll for each employee
                     computePayroll(employeeNumber, employeeFirstName, employeeLastName, employeeBirthday, employeeHourlyRate, attendanceMap);
                 }
