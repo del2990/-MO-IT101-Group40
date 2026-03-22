@@ -107,8 +107,8 @@ public class FinalCodeOutput {
     public static Map<String, List<String[]>> loadAttendanceRecords(String attendanceRecords) {
         Map<String, List<String[]>> attendanceMap = new HashMap<>();
 
-        // Note: Attendance file is read multiple times for simplicity.
-        // This can be optimized by loading data into memory using a Map.
+
+        // Attendance records are loaded into memory using a Map for efficient access
         try (BufferedReader br = new BufferedReader(new FileReader(attendanceRecords))) {
             br.readLine(); // Skip the header row to avoid processing column titles
             String line;
@@ -337,6 +337,7 @@ public class FinalCodeOutput {
         List<String[]> records = attendanceMap.get(employeeNumber);
         if (records != null) {
             for (String[] data : records) {
+            // Skip malformed or incomplete attendance records
             if (data.length < 6) continue;
                 // Parsing the date of the attendance record
                 String[] dateParts = data[3].split("/");
@@ -370,7 +371,7 @@ public class FinalCodeOutput {
             double totalDeductions = sssDeductions + philHealthDeductions + pagibigDeductions + incomeTax;
 
             double firstNetSalary = firstGrossSalary; 
-            double secondNetSalary = totalGrossSalary - totalDeductions;
+            double secondNetSalary = secondGrossSalary - totalDeductions;
 
             int index = month - 6;
 
