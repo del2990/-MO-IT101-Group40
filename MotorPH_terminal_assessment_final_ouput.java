@@ -371,7 +371,8 @@ public class FinalCodeOutput {
             double totalDeductions = sssDeductions + philHealthDeductions + pagibigDeductions + incomeTax;
 
             double firstNetSalary = firstGrossSalary; 
-            double secondNetSalary = secondGrossSalary - totalDeductions;
+            // Deductions are applied to the first and second gross salary
+            double secondNetSalary = totalGrossSalary - totalDeductions;
 
             int index = month - 6;
 
